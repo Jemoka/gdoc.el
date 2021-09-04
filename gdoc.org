@@ -1,0 +1,26 @@
+#+TITLE: gdoc.el
+#+AUTHOR: Houjun Liu
+
+* Setup
+
+** gdrive
+*Begin by installing and setting up the [[https://github.com/prasmussen/gdrive][gdrive]] cli tool.*
+
+** gdrive.el
+
+#+begin_src elisp
+(add-to-list 'load-path "/path/to/gdoc.el")
+(require 'gdoc)
+#+end_src
+
+* Usage
+Authenticate to =gdrive= by executing ~gdrive list~. Once logged in, execute ~M-x gdoc-edit~ to search and select a Google Doc to edit. Then, edit and save to the buffer that's opened normally.
+
+* Caveats
+There are many!
+- This plugin only works with plaintext, so *all formatting will be gone* if you use it
+- Quotes will likely look weird (i.e. same-y for begin and end quotes) unless you are the .00001% of the population that uses [[https://github.com/gareth-rees/smart-quotes][smart quotes-mode]] in Emacs. To solve, use that mode
+- This package currently does very little:
+  - It does not register a major-mode, and simply makes a buffer that has a special on-save hook
+  - It does not support formatting, so things like *bolding* is out of the question (but it may soon)
+    
