@@ -3,10 +3,7 @@
 
 * Setup
 
-** gdrive
 *Begin by installing and setting up the [[https://github.com/prasmussen/gdrive][gdrive]] cli tool.*
-
-** gdrive.el
 
 #+begin_src elisp
 (add-to-list 'load-path "/path/to/gdoc.el")
