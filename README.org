@@ -5,6 +5,8 @@
 
 *Begin by installing and setting up the [[https://github.com/prasmussen/gdrive][gdrive]] cli tool.*
 
+Then, install this wonderful package.
+
 #+begin_src elisp
 (add-to-list 'load-path "/path/to/gdoc.el")
 (require 'gdoc)
