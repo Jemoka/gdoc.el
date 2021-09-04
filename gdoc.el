@@ -65,13 +65,18 @@
 
 (defun load-gdoc-by-id-and-name (id name)
   "Load Google doc by name and ID"
+  (message (format "Loading document %s..." name))
   (let ((default-directory temporary-file-directory))
-    (shell-command (format "gdrive export --mime text/plain %s" id))
-    (rename-file (format "%s.conf" name) name t)
-    (find-file name)
+    (if (file-exists-p (format "%s.htm" name))
+	(delete-file (format "%s.htm" name)))
+    (shell-command (format "gdrive export --mime text/html %s" id))
+    (shell-command (format "pandoc '%s.htm' -o '%s.org'" name name))
+    (find-file (format "%s.org" name))
     (add-hook 'after-save-hook
 	      (apply-partially
 	       (lambda (id name)
+		 (shell-command (format "pandoc '%s.org' -o '%s.odt'" name name))
+		 (rename-file (format "%s.odt" name) name t)
 		 (async-shell-command-no-window (format "gdrive update %s %s" id name)))
 	       id name)
 	      nil t)))
