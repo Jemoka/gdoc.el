@@ -77,7 +77,7 @@
 	       (lambda (id name)
 		 (shell-command (format "pandoc '%s.org' -o '%s.odt'" name name))
 		 (rename-file (format "%s.odt" name) name t)
-		 (async-shell-command-no-window (format "gdrive update %s %s" id name)))
+		 (async-shell-command-no-window (format "gdrive update '%s' '%s'" id name)))
 	       id name)
 	      nil t)))
 
